@@ -4,9 +4,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Budget Application</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-    
+    <h2>Budget Application</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <!-- <form name="budgetForm" onsubmit="return validateBudget()"> -->
+                    <form name="budgetForm" onsubmit="return app.showBudget()">
+                        <div class="validation" id="valid-budget"></div>
+                        <label for="budget">Enter your Budget</label>
+                        <input type="number" id="budget" name="budget">
+                        
+                        <button type="submit" class="btn btn-primary">Add Budget</button>
+                    </form>
+                </div>
+                
+                <div class="row">
+                    <!-- <form name="expenseForm" onsubmit="return validateExpense()"> -->
+                    <form name="expenseForm">
+                        <div class="validation" id="valid-expense"></div>
+                        <label for="expense">Enter your Expense</label>
+                        <input type="text" id="expense" name="expense">
+                        
+                        <div class="validation" id="valid-expense-amount"></div>
+                        <label for="expense-amount">Enter your Expense Amount</label>
+                        <input type="number" id="expense-amount" name="expenseAmount">
+
+                        <button type="submit" class="btn btn-danger">Add Expense</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col" style="background-color: blue;">
+                <div class="row" style="background-color: yellow;">
+                    <div class="col">
+                        <h4>BUDGET</h4>
+                        <div id="showBudget"></div>
+                    </div>
+
+                    <div class="col">
+                        <h4>EXPENSES</h4>
+                        <div id="showExpense"></div>
+                    </div>
+
+                    <div class="col">
+                        <h4>SAVINGS</h4>
+                        <div id="showSavings"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
 </body>
 </html>
