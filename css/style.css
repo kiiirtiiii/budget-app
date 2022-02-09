@@ -1,0 +1,25 @@
+h2 {
+    text-align: center;
+    margin-top: 30px !important;
+}
+
+h4 {
+    text-align: center;
+}
+
+input {
+    display: block;
+    margin-bottom: 10px !important;
+}
+
+button {
+     margin-bottom: 50px !important;
+}
+
+.container {
+    padding: 8%;
+}
+
+.validation {
+    color: red;
+}
