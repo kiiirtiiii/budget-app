@@ -1,64 +1,74 @@
-//'use strict'
+class Inputs {
+  constructor() {
+    this.budgetBtn = document.getElementById('budget-btn')
+    this.expenseBtn = document.getElementById('expense-btn')
 
-class App {
-  constructor(budget, expense) {
-    this.budget = budget
-    this.expense = expense
-    this.savings = this.budget - this.expense
-  }
-
-  showBudget() {
-    //document.getElementById('showBudget').innerHTML = this.budget
-    console.log(this.budget)
-    return false
-  }
-
-  showExpense() {
-    document.getElementById('showExpense').innerHTML = this.expense
-  }
-
-  showSavings() {
-    document.getElementById('showSaings').innerHTML = this.savings
+    this.budget = document.getElementById('budget')
+    this.expense = document.getElementById('expense')
+    this.expenseAmount = document.getElementById('expense-amount')
   }
 }
 
-let budget = document.budgetForm.budget.value
-let expense = document.expenseForm.expenseAmount.value
+class Validation {
+  constructor() {
+    this.budget = document.getElementById('valid-budget')
+    this.expense = document.getElementById('valid-expense')
+    this.expenseAmount = document.getElementById('valid-expense-amount')
+  }
+}
 
-let app = new App(budget, expense)
+class ShowValues {
+  constructor() {
+    this.budget = document.getElementById('show-budget')
+    this.expense = document.getElementById('show-expense')
+    this.savings = document.getElementById('show-savings')
+    this.expenseArr = []
+  }
 
-// function print() {
-//   let budget = document.sample.budget.value
-//   console.log(budget)
-//   return false
-// }
+  showBudget() {
+    this.budget.innerHTML = inputs.budget.value
+    inputs.budget.value = ''
+  }
 
-// App.showBudget()
-// App.showExpense()
-// App.showSavings()
+  showExpense() {
+    this.expenseArr.push(inputs.expenseAmount.value)
 
-// function validateBudget() {
-//   let budgetValue = document.budgetForm.budget.value
+    inputs.expense.value = ''
+    inputs.expenseAmount.value = ''
 
-//   if (budgetValue == null || budgetValue == '') {
-//     document.getElementById('valid-budget').innerHTML =
-//       'Please enter your budget'
-//     return false
-//   }
-// }
+    let newExpense = document.createElement('div')
+    newExpense.innerHTML = inputs.expenseAmount.value
 
-// function validateExpense() {
-//   let expenseValue = document.expenseForm.expense.value
-//   let expenseAmountValue = document.expenseForm.expenseAmount.value
+    console.log(newExpense.innerHTML)
+    // this.budget.insertBefore(newExpense, document.getElementById('dummy'))
+  }
+}
 
-//   if (expenseValue == null || expenseValue == '') {
-//     document.getElementById('valid-expense').innerHTML =
-//       'Please enter your expense'
-//     return false
-//   } else if (expenseAmountValue == null || expenseAmountValue == '') {
-//     document.getElementById('valid-expense').innerHTML = ''
-//     document.getElementById('valid-expense-amount').innerHTML =
-//       'Please enter the amount of your expense'
-//     return false
-//   }
-// }
+let inputs = new Inputs()
+let validation = new Validation()
+let showValues = new ShowValues()
+
+let expense = []
+
+inputs.budgetBtn.addEventListener('click', function () {
+  if (inputs.budget.value == null || inputs.budget.value == '') {
+    validation.budget.innerHTML = 'Please enter your budget'
+  } else {
+    showValues.showBudget()
+  }
+})
+
+inputs.expenseBtn.addEventListener('click', function () {
+  if (inputs.expense.value == null || inputs.expense.value == '') {
+    validation.expense.innerHTML = 'Please enter your expense'
+  } else if (
+    inputs.expenseAmount.value == null ||
+    inputs.expenseAmount.value == ''
+  ) {
+    validation.expense.innerHTML = ''
+    validation.expenseAmount.innerHTML =
+      'Please enter the amount of your expense'
+  } else {
+    showValues.showExpense()
+  }
+})
