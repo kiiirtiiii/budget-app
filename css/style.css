@@ -23,3 +23,11 @@ button {
 .validation {
     color: red;
 }
+
+#new-expense {
+    display: none;
+}
+
+.individual-expense {
+    background-color: lightgrey;
+}
