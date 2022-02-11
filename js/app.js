@@ -23,32 +23,68 @@ class ShowValues {
     this.expense = document.getElementById('show-expense')
     this.savings = document.getElementById('show-savings')
     this.expenseArr = []
+
+    this.original = document.getElementById('new-expense')
+    this.i = 0
+
+    this.editExpense = document.querySelector('.edit-expense')
+    this.dltExpense = document.querySelector('.dlt-expense')
   }
 
   showBudget() {
     this.budget.innerHTML = inputs.budget.value
+    validation.budget.innerHTML = ''
     inputs.budget.value = ''
   }
 
   showExpense() {
-    this.expenseArr.push(inputs.expenseAmount.value)
+    this.expenseArr.push(+inputs.expenseAmount.value)
+
+    validation.expense.innerHTML = ''
+    validation.expenseAmount.innerHTML = ''
+
+    let clone = this.original.cloneNode(true)
+
+    clone.className = 'individual-expense'
+    clone.id = 'new-expense' + ++this.i
+
+    clone.innerHTML += inputs.expense.value
+    clone.innerHTML += ' ' + this.expenseArr.at(-1)
+
+    this.original.parentNode.appendChild(clone)
+    console.log(clone)
+    console.log(this.expenseArr)
 
     inputs.expense.value = ''
     inputs.expenseAmount.value = ''
 
-    let newExpense = document.createElement('div')
-    newExpense.innerHTML = inputs.expenseAmount.value
+    if (inputs.budgetBtn.innerHTML == 'Update Expense') {
+      this.delete()
+    }
+  }
 
-    console.log(newExpense.innerHTML)
-    // this.budget.insertBefore(newExpense, document.getElementById('dummy'))
+  edit(e) {
+    let parentNodetext = e.parentNode.innerText
+    let textArr = parentNodetext.split(' ')
+    console.log(textArr)
+
+    inputs.expense.value = textArr.slice(2, -1, -1).join(' ')
+    inputs.expenseAmount.value = textArr.at(-1)
+
+    let idx = this.expenseArr.findIndex((p) => p == inputs.expenseAmount.value)
+    console.log(idx)
+
+    inputs.expenseBtn.innerHTML = 'Update Expense'
+  }
+
+  delete(e) {
+    document.getElementById(e.parentNode.id).remove()
   }
 }
 
 let inputs = new Inputs()
 let validation = new Validation()
 let showValues = new ShowValues()
-
-let expense = []
 
 inputs.budgetBtn.addEventListener('click', function () {
   if (inputs.budget.value == null || inputs.budget.value == '') {
@@ -72,3 +108,9 @@ inputs.expenseBtn.addEventListener('click', function () {
     showValues.showExpense()
   }
 })
+
+// showValues.editExpense.addEventListener('click', function () {
+//   inputs.expense.value = 'kirti'
+// })
+
+// console.log(showValues.editExpense)
