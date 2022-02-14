@@ -3,20 +3,21 @@ h2 {
     margin-top: 30px !important;
 }
 
-h4 {
+h5 {
     text-align: center;
 }
 
 input {
     display: block;
     margin-bottom: 10px !important;
-}
+} 
 
 button {
-     margin-bottom: 50px !important;
+    margin-bottom: 50px !important;
 }
 
 .container {
+    justify-content: space-between;
     padding: 8%;
 }
 
@@ -29,5 +30,23 @@ button {
 }
 
 .individual-expense {
-    background-color: lightgrey;
+    padding: 10px;
+}
+
+#update-expense-btn {
+    display: none;
+}
+
+p {
+    display: inline;
+    color: red;
+}
+
+.edit-expense, .dlt-expense {
+    background-color: transparent;
+    float: right;
+}
+
+.edit-expense img, .dlt-expense img {
+    width: 25px;
 }
