@@ -6,60 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budget Application</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css"> 
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
     <h2>Budget Application</h2>
     <div class="container">
         <div class="row">
-            <div class="col">
-                <div class="row">
-                    <!-- <form name="budgetForm" onsubmit="return validateBudget()"> -->
-                    <!-- <form name="budgetForm"> -->
-                        <div class="validation" id="valid-budget"></div>
-                        <label for="budget">Enter your Budget</label>
-                        <input type="number" id="budget">
-                        
-                        <button class="btn btn-primary" id="budget-btn">Add Budget</button>
-                    <!-- </form> -->
-                </div>
+            <div class="col-3">
+                <!-- Hideen div to show budget validation -->
+                <div class="validation" id="valid-budget"></div>
                 
-                <div class="row">
-                    <!-- <form name="expenseForm" onsubmit="return validateExpense()"> -->
-                    <!-- <form name="expenseForm"> -->
-                        <div class="validation" id="valid-expense"></div>
-                        <label for="expense">Enter your Expense</label>
-                        <input type="text" id="expense">
-                        
-                        <div class="validation" id="valid-expense-amount"></div>
-                        <label for="expense-amount">Enter your Expense Amount</label>
-                        <input type="number" id="expense-amount">
+                <!-- Input for budget -->
+                <label for="budget">Enter your Budget</label>
+                <input type="number" id="budget">
+                
+                <button class="btn btn-primary" id="budget-btn">Add Budget</button>
+                
+                <!-- Hidden div to show expense validation -->
+                <div class="validation" id="valid-expense"></div>
 
-                        <button class="btn btn-danger" id="expense-btn">Add Expense</button>
-                    <!-- </form> -->
-                </div>
+                <!-- Input for expense -->
+                <label for="expense">Enter your Expense</label>
+                <input type="text" id="expense">
+                
+                <!-- Hidden div to show expense amount validation-->
+                <div class="validation" id="valid-expense-amount"></div>
+
+                <!-- Input for expense amount -->
+                <label for="expense-amount">Enter your Expense Amount</label>
+                <input type="number" id="expense-amount">
+
+                <button class="btn btn-danger" id="expense-btn">Add Expense</button>
+
+                <!-- Hidden button to edit exoenses -->
+                <button class="btn btn-danger" id="update-expense-btn">Update Expense</button>
             </div>
 
-            <div class="col" style="background-color: blue;">
-                <div class="row" style="background-color: yellow;">
-                    <div class="col">
-                        <h4>BUDGET</h4>
+            <div class="col-9">
+                <div class="row">
+                    <div class="col-2">
+                        <h5><img src=assets/budget.png><br>Budget</h5>
+
+                        <!-- div to show budget value -->
                         <div id="show-budget"></div>
                     </div>
-
-                    <div class="col">
-                        <h4>EXPENSES</h4>
+                    
+                    <div class="col-8">
+                        <h5><img src=assets/expense.png><br>Expenses</h5>
+                            
+                        <!-- div to show expense values -->
                         <div id="show-expense">
+
+                            <!-- hidden div to show all expenses -->
                             <div id="new-expense">
-                                <button class="edit-expense" onclick="showValues.edit(this)">Edit</button>
-                                <button class="dlt-expense" onclick="showValues.delete(this)">Delete</button>
+                                <p></p>
+
+                                <button class="btn dlt-expense" onclick="showValues.delete(this)"><img src="assets/delete.png" alt="Delete"></button>
+                                <button class="btn edit-expense" onclick="showValues.edit(this)"><img src="assets/edit.png" alt="Edit"></button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col">
-                        <h4>SAVINGS</h4>
+                    <div class="col-2">
+                        <h5><img src=assets/savings.png><br>Savings</h5>
+
+                        <!-- div to show savings value -->
                         <div id="show-savings"></div>
                     </div>
                 </div>
