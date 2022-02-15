@@ -1,3 +1,4 @@
+// class to access all the inputs from user
 class Inputs {
   constructor() {
     this.budgetBtn = document.getElementById('budget-btn')
@@ -10,6 +11,7 @@ class Inputs {
   }
 }
 
+// class to check all the validations
 class Validation {
   constructor() {
     this.budget = document.getElementById('valid-budget')
@@ -18,6 +20,7 @@ class Validation {
   }
 }
 
+// class to access all the div to show calculated values
 class ShowValues {
   constructor() {
     this.budget = document.getElementById('show-budget')
@@ -35,6 +38,7 @@ class ShowValues {
     this.budgetValue
   }
 
+  // function to show budget amount
   showBudget() {
     this.budget.innerHTML = inputs.budget.value
     this.budgetValue = +inputs.budget.value
@@ -42,6 +46,7 @@ class ShowValues {
     inputs.budget.value = ''
   }
 
+  // function to show all the expenses
   showExpense() {
     this.expenseArr.push(+inputs.expenseAmount.value)
 
@@ -53,7 +58,7 @@ class ShowValues {
     clone.className = 'individual-expense'
     clone.id = 'new-expense' + ++this.i
     clone.querySelector('p').innerHTML =
-      inputs.expense.value + ' ' + this.expenseArr.at(-1)
+      inputs.expense.value + ': ' + this.expenseArr.at(-1)
 
     this.original.parentNode.appendChild(clone)
 
@@ -61,6 +66,7 @@ class ShowValues {
     inputs.expenseAmount.value = ''
   }
 
+  // function to update the value of expense after edit
   update(expenseValue) {
     validation.expense.innerHTML = ''
     validation.expenseAmount.innerHTML = ''
@@ -79,6 +85,7 @@ class ShowValues {
     inputs.updateExpenseBtn.style.display = 'none'
   }
 
+  // function to edit expenses
   edit(e) {
     let expenseValue = e.parentNode.querySelector('p')
 
@@ -89,6 +96,7 @@ class ShowValues {
     inputs.expenseBtn.style.display = 'none'
     inputs.updateExpenseBtn.style.display = 'block'
 
+    // functionality of 'Update Expense' button
     inputs.updateExpenseBtn.addEventListener('click', function () {
       if (inputs.expense.value == null || inputs.expense.value == '') {
         validation.expense.innerHTML = 'Expense can not be empty'
@@ -105,6 +113,7 @@ class ShowValues {
     })
   }
 
+  // function to remove the expense value from backend
   removeExpense(e) {
     let expenseValue = e.parentNode.querySelector('p')
     this.textArr = expenseValue.innerHTML.split(' ')
@@ -113,12 +122,14 @@ class ShowValues {
     this.expenseArr.splice(idx, 1)
   }
 
+  // function to delete the expense from frontend
   delete(e) {
     document.getElementById(e.parentNode.id).remove()
     showValues.removeExpense(e)
     showValues.showSavings()
   }
 
+  // function to show savings amount
   showSavings() {
     if (this.expenseArr.length == 0) {
       this.savings.innerHTML = this.budgetValue
@@ -128,13 +139,21 @@ class ShowValues {
       }, 0)
       this.savings.innerHTML = this.budgetValue - totalExpense
     }
+
+    if (this.savings.innerHTML >= 0) {
+      this.savings.style.color = 'green'
+    } else {
+      this.savings.style.color = 'red'
+    }
   }
 }
 
+// objects of classes define above
 let inputs = new Inputs()
 let validation = new Validation()
 let showValues = new ShowValues()
 
+// functionality of 'Add Budget' button
 inputs.budgetBtn.addEventListener('click', function () {
   if (inputs.budget.value == null || inputs.budget.value == '') {
     validation.budget.innerHTML = 'Please enter your budget'
@@ -144,6 +163,7 @@ inputs.budgetBtn.addEventListener('click', function () {
   }
 })
 
+// functinality of 'Add Expenses' button
 inputs.expenseBtn.addEventListener('click', function () {
   if (inputs.expense.value == null || inputs.expense.value == '') {
     validation.expense.innerHTML = 'Please enter your expense'
