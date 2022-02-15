@@ -12,10 +12,6 @@ input {
     margin-bottom: 10px !important;
 } 
 
-button {
-    margin-bottom: 50px !important;
-}
-
 .container {
     justify-content: space-between;
     padding: 8%;
@@ -30,7 +26,7 @@ button {
 }
 
 .individual-expense {
-    padding: 10px;
+    padding: 20px 50px 20px 50px;
 }
 
 #update-expense-btn {
@@ -49,4 +45,13 @@ p {
 
 .edit-expense img, .dlt-expense img {
     width: 25px;
+}
+
+#show-budget, #show-savings {
+    font-size: 40px;
+    text-align: center;
+}
+
+#show-expense {
+    font-size: 20px
 }
