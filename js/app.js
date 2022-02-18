@@ -164,7 +164,7 @@ inputs.budgetBtn.addEventListener('click', function () {
 })
 
 // functinality of 'Add Expenses' button
-inputs.expenseBtn.addEventListener('click', function () {
+inputs.expenseBtn.addEventListener('click touchstart', function () {
   if (inputs.expense.value == null || inputs.expense.value == '') {
     validation.expense.innerHTML = 'Please enter your expense'
   } else if (
@@ -174,7 +174,7 @@ inputs.expenseBtn.addEventListener('click', function () {
     validation.expense.innerHTML = ''
     validation.expenseAmount.innerHTML =
       'Please enter the amount of your expense'
-  } else {
+  } else { 
     showValues.showExpense()
     showValues.showSavings()
   }
